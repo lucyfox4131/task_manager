@@ -9,4 +9,7 @@ tasks:
 - id: 3
   title: Margarita time
   description: Make a margarita
-total: 3
+- id: 4
+  title: Make a Pizza
+  description: 'Add some cheese! '
+total: 4
