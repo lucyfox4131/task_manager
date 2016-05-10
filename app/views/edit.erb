@@ -1,0 +1,9 @@
+<form action="/tasks/<%= @task.id %>" method="post">
+  <p>Edit</p>
+  <!-- _method is overriding the method of where it's being sent, changes it to PUT instead of POST -->
+  <input type="hidden" name="_method" value="PUT" />
+  <!-- task[title] is about nesting key values in params hash-->
+  <input type="text" name="task[title]" value="<%= @task.title %>" /><br/>
+  <textarea name="task[description]"><%= @task.description %></textarea><br/>
+  <input type='submit'/>
+</form>
