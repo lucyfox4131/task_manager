@@ -3,8 +3,9 @@ ENV['RACK_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'minitest/autorun'
 require 'minitest/pride'
-require 'minitest/emoji'
+# require 'minitest/emoji'
 require 'tilt/erb'
+require 'capybara/dsl'
 
 module TestHelpers
   def teardown
@@ -14,7 +15,8 @@ module TestHelpers
 
   def create_tasks(num)
     num.times do |i|
-      task_manager.create(title: "Title#{i+1}", description: "Learn #{i+1} tests!")
+      i += 1
+      task_manager.create(title: "Title#{i}", description: "Learn #{i} tests!")
     end
   end
 
@@ -22,4 +24,11 @@ module TestHelpers
     database = YAML::Store.new('db/task_manager_test')
     @task_manager ||= TaskManager.new(database)
   end
+end
+
+Capybara.app = TaskManagerApp
+
+class FeatureTest < Minitest::Test
+  include Capybara::DSL
+  include TestHelpers
 end

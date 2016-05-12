@@ -1,13 +1,14 @@
 require_relative '../test_helper'
 
+# Task Manager Test
 class TaskManagerTest < Minitest::Test
   include TestHelpers
 
   def test_it_creates_a_task
-    create_tasks(1)
+    task_manager.create(title: "Title1", description: "Learn 1 test!")
     task = task_manager.find(1)
     assert_equal 'Title1', task.title
-    assert_equal 'Learn 1 tests!', task.description
+    assert_equal 'Learn 1 test!', task.description
     assert_equal 1, task.id
   end
 
@@ -18,10 +19,10 @@ class TaskManagerTest < Minitest::Test
   end
 
   def test_it_can_find_a_task
-    create_tasks(1)
+    task_manager.create(title: "Title1", description: "Learn 1 test!")
     task = task_manager.find(1)
     assert_equal 'Title1', task.title
-    assert_equal 'Learn 1 tests!', task.description
+    assert_equal 'Learn 1 test!', task.description
     assert_equal 1, task.id
   end
 
